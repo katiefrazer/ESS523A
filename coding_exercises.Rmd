@@ -18,7 +18,7 @@ For these exercises, we will be using the **knz_bison** dataset from the **lterd
 ```{r}
 data("knz_bison")
 
-?knz_bison
+knz_bison
 ```
 
 Create a new column in the bison dataset that calculates the individual's age at the time of observation.
@@ -28,9 +28,47 @@ Create a new column in the bison dataset that calculates the individual's age at
 # animal_yob ~ a number denoting the year animal was born
 # rec_year ~ a number denoting the year of observation
 
-
+knz_bison %>%
+  mutate(animal_age_obs = rec_year-animal_yob)
 ```
 
 Write a function that will first filter the bison dataset based on any user-specified weight threshold (returning the filtered dataset).
 
+```{r}
+# animal_weight ~ a number denoting bison weight in pounds
+# filtering as if user wants anything less than or equal to provided weight
+
+bison_by_weight <- 
+  function(x){ 
+    knz_bison %>%
+    filter(animal_weight <= x)
+  }
+
+bison_by_weight(300)
+```
+
 Create a boxplot showing weight distribution between male and female bison, and then conduct a t-test to see if weight is significantly different between males and females.
+
+```{r}
+# animal_weight ~ a number denoting bison weight in pounds
+# animal_sex ~ a character denoting the sex of the bison
+  # M = male, F = female
+
+knz_bison %>%
+  ggplot(aes(x = animal_weight)) +
+  geom_boxplot(aes(fill = animal_sex))
+```
+
+```{r}
+# running a t-test
+
+# testing for equal variances
+knz_bison %>%
+  levene_test(animal_weight ~ animal_sex)
+  # variances are NOT equal
+
+# doing the t-test 
+knz_bison %>%
+  t_test(animal_weight ~ animal_sex, var.equal = FALSE, detailed = TRUE)
+  # bison weight is significantly higher in female bison over male mison
+```
