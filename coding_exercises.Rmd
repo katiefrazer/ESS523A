@@ -17,6 +17,20 @@ For these exercises, we will be using the **knz_bison** dataset from the **lterd
 
 ```{r}
 data("knz_bison")
+
+?knz_bison
 ```
 
-1.  Create a new column in the bison dataset that calculates the individual's age at the time of observation.
+Create a new column in the bison dataset that calculates the individual's age at the time of observation.
+
+```{r}
+# only use year info as month and day info unavailable for animal's birthdate
+# animal_yob ~ a number denoting the year animal was born
+# rec_year ~ a number denoting the year of observation
+
+
+```
+
+Write a function that will first filter the bison dataset based on any user-specified weight threshold (returning the filtered dataset).
+
+Create a boxplot showing weight distribution between male and female bison, and then conduct a t-test to see if weight is significantly different between males and females.
