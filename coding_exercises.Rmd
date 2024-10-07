@@ -1,0 +1,22 @@
+---
+title: "coding_exercise"
+author: "Katie Frazer"
+date: "2024-10-07"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+source("setup.R")
+```
+
+For these exercises, we will be using the **knz_bison** dataset from the **lterdatasampler** package.
+
+```{r}
+data("knz_bison")
+```
+
+1.  Create a new column in the bison dataset that calculates the individual's age at the time of observation.
